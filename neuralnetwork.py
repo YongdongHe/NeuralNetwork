@@ -195,19 +195,9 @@ class NeuralNetWork():
 
 
 def Debug():
-	# neuralnetworkInstance = NeuralNetWork(3,2,1,1)
-	# trainings = [
-	# [1,0,1],
-	# [0,0,1],
-	# [0,1,1],
-	# [1,1,1]
-	# ]
-	# examples = [
-	# 0,1,0,1
-	# ]
-	# for i in range(500):
-	# 	neuralnetworkInstance.backpropagation(trainings,examples)
-	# 	print neuralnetworkInstance.getOutput([1,0,1])
+	#Examples in Artificial Intelligence By  Nils J. Nilsson for refenrence
+	#Test the examples with neuron only
+	#使用神经元类，测试神经网络中的权值调整过程是否正确
 	N1 = Neuron(3,1)
 	N1.setWeights([2,-2,0])
 	N2 = Neuron(3,1)
@@ -277,6 +267,8 @@ def Debug():
 	print '\n\n\n\n\n\n'
 	net = NeuralNetWork(nInput=3,nHide=3,nOutput=1,studyspeed=1)
 
+
+	#使用神经网络类，测试神经网络中的权值调整过程是否跟前面用神经元分步计算得到的结果相同
 	d = 0
 	examples = [[0]]
 	N11 = Neuron(3,1)
@@ -291,10 +283,9 @@ def Debug():
 	outputs = [N41]
 	net.setHideNeurons(hides)
 	net.setOutputNeurons(outputs)
-
-
-
+	#进行反向传播调节权值
 	net.backpropagation([[1,0,1]],[[0]])
+	#输出调节后的神经元权重
 	net.printInfo()
 
 def xulian(times,nInput,nHide,nOutput):
@@ -325,6 +316,7 @@ def xulian(times,nInput,nHide,nOutput):
 				print 'success training time:%d item:%d'%(time,count)
 			#测试
 			count = 0
+			#记录预测成功的用例数量
 			success = 0
 			for img in testimgs:
 				testItem = img['data']
@@ -340,14 +332,6 @@ def xulian(times,nInput,nHide,nOutput):
 				count += 1
 			print 'Trainings times %d : %f'%(time ,float(success)/len(testimgs))
 			res_file.write('[%d,%f]\n'%(time ,float(success)/len(testimgs)))
-		#保存训练结果
-		##save_file = open('net%s.json'%times,'w')
-		##save_file.write(str(network.getSaveData()))
-		#print network.getSaveData()['hideNeurons']
-
-		#测试
-		
-		
 	except Exception as e:
 		print traceback.format_exc()
 
