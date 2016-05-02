@@ -194,7 +194,7 @@ class NeuralNetWork():
 			outputNeuron.printInfo()
 
 
-def Debug():
+def debugFunc():
 	#Examples in Artificial Intelligence By  Nils J. Nilsson for refenrence
 	#Test the examples with neuron only
 	#使用神经元类，测试神经网络中的权值调整过程是否正确
@@ -288,7 +288,7 @@ def Debug():
 	#输出调节后的神经元权重
 	net.printInfo()
 
-def xulian(times,nInput,nHide,nOutput):
+def trainingFunc(times,nInput,nHide,nOutput):
 	try:
 		data_file = open('img.json','r')
 		res_file = open('res_%d_%d_%d_%d'%(times,nInput,nHide,nOutput),'w+')
@@ -336,14 +336,14 @@ def xulian(times,nInput,nHide,nOutput):
 		print traceback.format_exc()
 
 
-def test(times):
+def testOutput(times):
 	data_file = open('img.json','r')
 	json_data = eval(data_file.read())
 	#根据配置文件设置神经网络
 	network = NeuralNetWork()
-	#获取配置文件
-	confdig_file = open('net%s.json'%times,'r')
-	json_config = eval(confdig_file.read())
+	#获取神经网络配置文件(存储了神经网络的各层神经元数目和各个神经元的权值)
+	config_file = open('net%s.json'%times,'r')
+	json_config = eval(config_file.read())
 	network.setBySaveData(json_config)
 	#获得训练集
 	imgs = json_data['imgs']
@@ -363,7 +363,7 @@ def test(times):
 
 def main():
 	#Debug()
-	xulian(150,3840,15,1)
+	trainingFunc(150,3840,15,1)
 	
 if __name__ == '__main__':
 	main()
