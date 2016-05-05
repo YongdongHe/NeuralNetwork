@@ -83,7 +83,7 @@ class NeuralNetWork():
 		self.inputNeurons = np.transpose(np.matrix(training))
 		#用于保存隐藏层输出
 		hideoutputs = []
-		#对输入层，得到隐藏层输出结果
+		#对输入层作为输入，得到隐藏层输出结果
 		for hideNeuron in self.hideNeurons:
 			hideoutputs.append(hideNeuron.getOutput(self.inputNeurons))
 		
@@ -98,7 +98,7 @@ class NeuralNetWork():
 		beforeweights = []
 
 		#对输出层进行调节
-		#保存各个输出层的调节因子
+		#保存输出层各个神经元的调节因子
 		outputRs = []
 		for i in range(self.nOutput):
 			#f为实际输出结果
